@@ -1,0 +1,26 @@
+spring.application.name: sandbox
+
+
+#actuator
+management.endpoints.web.exposure.include: '*'
+management.endpoints.restart.enabled: true
+
+features:
+  RestartApplicationOnDatasourcePasswordRotation.enabled: true
+  Dotenv.enabled: true
+  DotenvCredentialFetcher.enabled: true
+
+scheduler.tasks[0].name: task1
+ # cron to execute at 12:43 AM every day
+scheduler.tasks[0].cron: 0 43 0 * * ?
+scheduler.tasks[0].command: "echo task1 says hello"
+
+scheduler.tasks[1].name: task2
+# cron to execute at 12:43 AM every day
+scheduler.tasks[1].cron: 0 0 0 * * ?
+scheduler.tasks[1].command: "echo task2 says hello"
+
+scheduler.tasks[2].name: task3
+# cron to execute every 5 seconds
+scheduler.tasks[2].cron: 0/5 * * * * ?
+scheduler.tasks[2].command: "echo 'task3 says hello'"
